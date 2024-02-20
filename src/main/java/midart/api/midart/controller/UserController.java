@@ -1,16 +1,23 @@
 package midart.api.midart.controller;
 
+import lombok.RequiredArgsConstructor;
+import midart.api.midart.dto.response.SearchUsersByPartialNameResponse;
+import midart.api.midart.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/midart/api/v1")
+@RequiredArgsConstructor
 public class UserController {
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("Hello from secured endpoint");
+    private final UserService userService;
+
+    @GetMapping("/users")
+    public ResponseEntity<List<SearchUsersByPartialNameResponse>> getUserByParameterName(@RequestParam("name") String name){
+        return ResponseEntity.ok(userService.searchUsersByPartialName(name));
     }
 }
+
