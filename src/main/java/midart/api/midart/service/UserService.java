@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user =User.builder()
+        var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
@@ -64,4 +65,6 @@ public class UserService {
                         .build())
                 .collect(Collectors.toList());
     }
+
+
 }

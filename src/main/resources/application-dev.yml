@@ -10,10 +10,30 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        format_sql:true
+        format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   application:
     security:
       jwt:
         secret-key: t/2r0FFjSfc5W7VBhkTO1Hilatkbf2gCVY8Ip97QSC4=
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2MB
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+aws:
+  access:
+    key:
+      id:
+      secret:
+  region: us-west-2
+  s3:
+    audio:
+      bucket:
+
+cloud:
+  stack:
+    auto: false
