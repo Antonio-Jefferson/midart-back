@@ -1,0 +1,11 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres:12
+    container_name: midart_local_postgres_development_container
+    ports:
+      - "15432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=postgres

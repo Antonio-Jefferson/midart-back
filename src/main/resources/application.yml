@@ -1,3 +1,30 @@
 spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:15432/postgres}
+    username: ${DB_POSTGRES_USER:postgres}
+    password: ${DB_POSTGRES_PASS:postgres}
   profiles:
-    active: dev
+    active: ${ACTIVE_PROFILE:local}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2MB
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+aws:
+  access:
+    accessKey: ${AWS_APP_ACCESS_KEY:123}
+    secretKey: ${AWS_APP_SECRET_KEY:123}
+    region: ${AWS_REGION:us-west-2}
+  s3.audio.bucket: image-post-s3
+  cloud:stack:auto: false
+
+api:
+  security:
+    token:
+      secret: ${SECRET_TOKEN:5dRiHb8uKqFmZnw9gtqbscK3UD2Vz4LX}

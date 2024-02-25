@@ -1,18 +1,23 @@
 package midart.api.midart.dto.request;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class RegisterRequest {
+
+    @NotNull(message = "firstname may not be null")
     private String firstname;
+
+    @NotNull(message = "lastname may not be null")
     private String lastname;
+
+    @NotNull(message = "email may not be null")
     private String email;
+
+    @NotNull(message = "password may not be null")
     private String password;
 
 }

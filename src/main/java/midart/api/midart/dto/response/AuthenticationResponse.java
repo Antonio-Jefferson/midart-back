@@ -1,14 +1,10 @@
 package midart.api.midart.dto.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 public class AuthenticationResponse {
     private String token;
 }
