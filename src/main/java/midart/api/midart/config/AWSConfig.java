@@ -21,6 +21,9 @@ public class AWSConfig {
     @Value("${aws.access.secretKey}")
     private String awsSecretKey;
 
+    @Value("${aws.access.region}")
+    private String region;
+
     public AWSCredentials credentials() {
         return new BasicAWSCredentials(
                 awsAccessKey,
@@ -33,7 +36,7 @@ public class AWSConfig {
         return AmazonS3ClientBuilder
                 .standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials()))
-                .withRegion(Regions.US_EAST_1)
+                .withRegion(Regions.fromName(region))
                 .build();
     }
 }

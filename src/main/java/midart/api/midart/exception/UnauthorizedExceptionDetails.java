@@ -5,7 +5,5 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class UnauthorizedException  {
-    public UnauthorizedException(String string) {
-    }
+public class UnauthorizedExceptionDetails extends ExceptionsDetails{
 }

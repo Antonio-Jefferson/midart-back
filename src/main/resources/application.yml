@@ -20,8 +20,8 @@ aws:
   access:
     accessKey: ${AWS_APP_ACCESS_KEY:123}
     secretKey: ${AWS_APP_SECRET_KEY:123}
-    region: ${AWS_REGION:us-west-2}
-  s3.audio.bucket: image-post-s3
+    region: ${AWS_REGION:us-east-1}
+  s3.audio.bucket: midart-profile-images
   cloud:stack:auto: false
 
 api:
