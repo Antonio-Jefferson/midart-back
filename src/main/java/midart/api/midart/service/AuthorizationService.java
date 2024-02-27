@@ -30,6 +30,7 @@ public class AuthorizationService implements UserDetailsService {
         User newUser = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
+                .profile_image("https://midart-profile-images.s3.amazonaws.com/default-image.png")
                 .email(request.getEmail())
                 .password(encryptedPassword)
                 .role(Role.USER)

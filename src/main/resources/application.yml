@@ -6,16 +6,12 @@ spring:
     password: ${DB_POSTGRES_PASS:postgres}
   profiles:
     active: ${ACTIVE_PROFILE:local}
-  jpa:
-    hibernate:
-      ddl-auto: update
   servlet:
     multipart:
       enabled: true
       file-size-threshold: 2MB
       max-file-size: 5MB
       max-request-size: 10MB
-
 aws:
   access:
     accessKey: ${AWS_APP_ACCESS_KEY:123}
