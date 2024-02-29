@@ -2,7 +2,6 @@ package midart.api.midart.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,9 +32,9 @@ public class GlobalExceptionHandler {
                         .build(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<EmailAlreadyExistsExceptionDetails> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
-        EmailAlreadyExistsExceptionDetails details = EmailAlreadyExistsExceptionDetails.builder()
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<NotFoundExceptionDetails> handleEmailAlreadyExistsException(NotFoundException ex) {
+        NotFoundExceptionDetails details = NotFoundExceptionDetails.builder()
                 .title("Email already exists")
                 .status(HttpStatus.CONFLICT.value())
                 .details(ex.getMessage())
@@ -43,6 +42,18 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .build();
         return new ResponseEntity<>(details, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<UnauthorizedExceptionDetails> handleEmailAlreadyExistsException(UnauthorizedException ex) {
+        UnauthorizedExceptionDetails details = UnauthorizedExceptionDetails.builder()
+                .title("Unauthorized access")
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .details(ex.getMessage())
+                .developerMessage(ex.getClass().getName())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(details, HttpStatus.UNAUTHORIZED);
     }
 
 }

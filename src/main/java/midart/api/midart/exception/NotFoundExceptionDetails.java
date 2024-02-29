@@ -5,5 +5,5 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class EmailAlreadyExistsExceptionDetails extends ExceptionsDetails{
+public class NotFoundExceptionDetails extends ExceptionsDetails{
 }

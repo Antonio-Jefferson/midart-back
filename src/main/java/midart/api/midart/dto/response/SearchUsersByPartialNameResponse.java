@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchUsersByPartialNameResponse {
-    private Integer id;
+    private Long id;
     private String name;
+    private String profile_image;
 }

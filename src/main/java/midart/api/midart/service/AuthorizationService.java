@@ -2,7 +2,7 @@ package midart.api.midart.service;
 
 import lombok.RequiredArgsConstructor;
 import midart.api.midart.dto.request.RegisterRequest;
-import midart.api.midart.exception.EmailAlreadyExistsException;
+import midart.api.midart.exception.NotFoundException;
 import midart.api.midart.model.Enums.Role;
 import midart.api.midart.model.User;
 import midart.api.midart.repository.UserRepository;
@@ -23,7 +23,7 @@ public class AuthorizationService implements UserDetailsService {
 
     public void register(RegisterRequest request) {
         if (Objects.nonNull(this.userRepository.findByEmail(request.getEmail()))) {
-          throw new EmailAlreadyExistsException("E-mail already exists: " + request.getEmail());
+          throw new NotFoundException("E-mail already exists: " + request.getEmail());
         }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(request.getPassword());
