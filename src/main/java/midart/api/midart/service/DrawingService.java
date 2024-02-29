@@ -1,10 +1,13 @@
 package midart.api.midart.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import midart.api.midart.exception.NotFoundException;
 import midart.api.midart.model.Drawing;
 import midart.api.midart.model.User;
 import midart.api.midart.repository.DrawingRepository;
+import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,5 +31,16 @@ public class DrawingService {
                 .image_url(s3.uploadFileIntoS3(file))
                 .build();
         drawingRepository.save(newDrawing);
+    }
+
+    @SneakyThrows
+    public void deleteDrawing(Long drawId) {
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Drawing draw = drawingRepository.findById(drawId).orElseThrow(() -> new NotFoundException("Drawing not found"));
+
+        if(!authUser.getId().equals(draw.getId())){
+            throw new AuthenticationException("You are not authorized to delete this drawing");
+        }
+        drawingRepository.delete(draw);
     }
 }

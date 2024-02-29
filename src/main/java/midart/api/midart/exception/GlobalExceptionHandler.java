@@ -33,9 +33,21 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<NotFoundExceptionDetails> handleEmailAlreadyExistsException(NotFoundException ex) {
+    public ResponseEntity<NotFoundExceptionDetails> notFoundException(NotFoundException ex) {
         NotFoundExceptionDetails details = NotFoundExceptionDetails.builder()
-                .title("Email already exists")
+                .title("Not Found")
+                .status(HttpStatus.NOT_FOUND.value())
+                .details(ex.getMessage())
+                .developerMessage(ex.getClass().getName())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<EmailAlreadyExistsExceptionDetails> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+        EmailAlreadyExistsExceptionDetails details = EmailAlreadyExistsExceptionDetails.builder()
+                .title("E-mail already exists")
                 .status(HttpStatus.CONFLICT.value())
                 .details(ex.getMessage())
                 .developerMessage(ex.getClass().getName())
