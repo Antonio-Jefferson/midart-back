@@ -21,4 +21,8 @@ public class Drawing {
     private String description;
     private String image_url;
     private Timestamp created_at;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
