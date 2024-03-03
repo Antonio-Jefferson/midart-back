@@ -42,7 +42,7 @@ public class DrawingService {
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Drawing draw = drawingRepository.findById(drawId).orElseThrow(() -> new NotFoundException("Drawing not found"));
 
-        if(!authUser.getId().equals(draw.getId())){
+        if(!authUser.getId().equals(draw.getUser().getId())){
             throw new AuthenticationException("You are not authorized to delete this drawing");
         }
         drawingRepository.delete(draw);

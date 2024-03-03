@@ -24,7 +24,7 @@ public class UserController {
         return ResponseEntity.ok(userService.searchUsersByPartialName(name));
     }
 
-    @PutMapping("users/profile-image/update")
+    @PutMapping("/users/profile-image/update")
     public ResponseEntity<Void> updateProfileImage(
             @Valid
             @NotNull(message = "file not null")
