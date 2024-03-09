@@ -3,7 +3,6 @@ package midart.api.midart.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import midart.api.midart.dto.request.CommentRequest;
-import midart.api.midart.dto.response.CommentsResponse;
 import midart.api.midart.exception.NotFoundException;
 import midart.api.midart.model.Comment;
 import midart.api.midart.model.Drawing;
@@ -36,21 +35,12 @@ public class CommentsService {
         commentsRepository.save(newComment);
     }
 
-    public List<CommentsResponse> findAllComment(Long drawId) {
-        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Drawing draw = drawingRepository.findById(drawId).orElseThrow(() -> new NotFoundException("Drawing not found"));
-
-        List<CommentsResponse> comments = commentsRepository.findAllByDrawingId(drawId);
-
-        return comments;
-    }
-
     public void putComment(Long commentId, CommentRequest commentData) {
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Comment comment = commentsRepository.findById(commentId).orElseThrow(() -> new NotFoundException("Comment not found"));
 
         if (comment.getUser().getId().equals(authUser.getId())) {
-            comment.setComment(comment.getComment());
+            comment.setComment(commentData.getComment());
             commentsRepository.save(comment);
         } else {
             throw new NotFoundException("Comment does not belong to this user");

@@ -16,4 +16,6 @@ public class DrawingResponse {
     private String firstname;
     private String description;
     private String image_url;
+    private Long quantityLikes;
+    private Long quantityComments;
 }
