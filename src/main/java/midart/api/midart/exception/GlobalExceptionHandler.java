@@ -68,4 +68,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(details, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<ConflictExceptionDetails> handleEmailAlreadyExistsException(ConflictException ex) {
+        ConflictExceptionDetails details = ConflictExceptionDetails.builder()
+                .title("Conflict error")
+                .status(HttpStatus.CONFLICT.value())
+                .details(ex.getMessage())
+                .developerMessage(ex.getClass().getName())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(details, HttpStatus.CONFLICT);
+    }
+
 }
