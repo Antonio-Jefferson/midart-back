@@ -41,6 +41,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "followed_user", cascade = CascadeType.ALL)
     private List<Follower> following;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Drawing> drawings;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

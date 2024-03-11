@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import midart.api.midart.dto.response.FollowedResponse;
 import midart.api.midart.dto.response.FollowerResponse;
 import midart.api.midart.dto.response.SearchUsersByPartialNameResponse;
+import midart.api.midart.dto.response.UserProfileResponse;
 import midart.api.midart.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,11 @@ public class UserController {
     @GetMapping("/{userId}/followed")
     public ResponseEntity<List<FollowedResponse>> findAllFollowedByUserId(@PathVariable Long userId){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAllFollowedByUserId(userId));
+    }
+
+    @GetMapping("/{userId}/profile-information")
+    public ResponseEntity<UserProfileResponse> findProfileInformation(@PathVariable Long userId){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findProfileInformation(userId));
     }
 }
 
