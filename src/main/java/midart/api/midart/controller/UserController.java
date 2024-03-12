@@ -3,10 +3,8 @@ package midart.api.midart.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import midart.api.midart.dto.response.FollowedResponse;
-import midart.api.midart.dto.response.FollowerResponse;
-import midart.api.midart.dto.response.SearchUsersByPartialNameResponse;
-import midart.api.midart.dto.response.UserProfileResponse;
+import midart.api.midart.dto.response.*;
+import midart.api.midart.service.FavoritesService;
 import midart.api.midart.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +50,7 @@ public class UserController {
     public ResponseEntity<UserProfileResponse> findProfileInformation(@PathVariable Long userId){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findProfileInformation(userId));
     }
+
+
 }
 

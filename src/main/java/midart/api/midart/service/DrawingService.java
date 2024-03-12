@@ -72,9 +72,9 @@ public class DrawingService {
         for (Drawing drawing : drawings) {
             DrawingResponse drawingResponse = DrawingResponse.builder()
                     .id(drawing.getId())
-                    .userId(drawing.getUser().getId()) // Assuming `getUser()` returns the associated user
-                    .profile_image(drawing.getUser().getProfile_image()) // Assuming `getProfile_image()` returns the user's profile image URL
-                    .firstname(drawing.getUser().getFirstname()) // Assuming `getFirstname()` returns the user's first name
+                    .userId(drawing.getUser().getId())
+                    .profile_image(drawing.getUser().getProfile_image())
+                    .firstname(drawing.getUser().getFirstname())
                     .description(drawing.getDescription())
                     .image_url(drawing.getImage_url())
                     .quantityComments((long) drawing.getComments().size())

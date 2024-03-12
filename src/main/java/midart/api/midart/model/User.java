@@ -44,6 +44,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Drawing> drawings;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Favorites> favorites;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

@@ -32,4 +32,7 @@ public class Drawing {
 
     @OneToMany(mappedBy = "drawing", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "drawing", cascade = CascadeType.ALL)
+    private List<Favorites> favorites;
 }
